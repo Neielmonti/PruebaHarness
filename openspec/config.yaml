@@ -1,0 +1,48 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Project: Prueba Harness
+  Tech stack: Python (loose script, no project packaging markers detected)
+  Architecture: Single MCP v2 server module (servidor_mcp.py) exposing a local tool
+  Testing: No test runner, no test command, no test files detected
+  Style: None declared (no linter/type checker/formatter config)
+
+projects:
+  - path: "."
+    stack: "Python (loose .py, no package marker)"
+    test_command: null
+    test_framework: null
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    guidelines:
+      - Follow existing code patterns
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: ""
+    build_command: ""
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
+
+testing:
+  strict_tdd: false
+  reason: >-
+    Neither an explicit strict_tdd:true marker nor a workspace-level test command
+    covering every in-scope project exists. The workspace contains only a loose
+    Python MCP module (servidor_mcp.py) with no project marker and no test runner.
+    Strict TDD falls closed to false; no-runner fallback applies.
+  detected: 2026-09-06
